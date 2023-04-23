@@ -2,6 +2,26 @@
 <title>Twitter</title>
 {% endblock title %} {% block content %}
 <div class="container">
-  <h1>{{ home}}</h1>
+  <br />
+  {% if messages %} {% for message in messages %}
+  <div class="alert alert-info alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  {% endfor %} {% endif %} {% if allTweets %} {% for obj in allTweets %}
+  <div class="card w-75">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">{{obj.tweet}}</p>
+      <a href="#" class="btn btn-primary">Button</a>
+    </div>
+  </div>
+  <br />
+  {% endfor %} {% endif %}
 </div>
 {% endblock content %}
