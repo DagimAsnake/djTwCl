@@ -9,7 +9,7 @@ def register(request):
          if registerForm.is_valid():
             registerForm.save()
             messages.success(request, ('New User Account Created, Login To Get Started'))
-            return redirect('/acount/register')
+            return redirect('/account/register')
     else:
         registerForm = CustomRegisterForm()
     return render(request, "register.html", {'registerForm': registerForm })
