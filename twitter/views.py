@@ -29,19 +29,12 @@ def home(request):
     return render((request), 'home.html', {"allTweets": allTweets})
 
 @login_required
-def profile(request):
-    context = {
-        "profile": "Profile page"
-    }
-    return render((request), 'profile.html', context)
-
-@login_required
 def mytweets(request):
     myTweets = TweetList.objects.filter(manage=request.user)
     paginator = Paginator(myTweets, 5)
     page = request.GET.get('pg')
     myTweets = paginator.get_page(page)
-    return render((request), 'mytweets.html', {"myTweets": myTweets})
+    return render((request), 'profile.html', {"myTweets": myTweets})
 
 @login_required
 def deleteTweet(request, tweetId):
@@ -55,3 +48,11 @@ def index(request):
         "index": "index page"
     }
     return render((request), 'index.html', context)
+
+@login_required
+def userTweet(request, userId):
+    tweets = TweetList.objects.filter(manage=userId)
+    paginator = Paginator(tweets, 5)
+    page = request.GET.get('pg')
+    tweets = paginator.get_page(page)
+    return render((request), 'userTweet.html', {"tweets": tweets})

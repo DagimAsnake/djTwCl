@@ -1,10 +1,13 @@
 {% extends 'base.html' %} {% block title %}
-<title>My Tweets</title>
+<title>User</title>
 {% endblock title %} {% block content %}
 <div class="container">
   <br />
   <div class="col-9 offset-md-3">
-    {% if myTweets %} {% for obj in myTweets %}
+    {% if tweets %} {% comment %} {% for obj in tweets %} {% endcomment %}
+    <h2>{{tweets.user.first_name}} {{tweets.last_name}} Tweets</h2>
+    {% comment %} {% endfor %} {% endcomment %} {% for obj in tweets %}
+    <br />
     <div class="card w-75">
       <div class="card-body">
         <h5 class="card-title">
@@ -12,9 +15,7 @@
           <span class="fs-6 text-primary"> @{{obj.manage}} </span>
         </h5>
         <p class="card-text">{{obj.tweet}}</p>
-        <a href="{% url 'deleteTweet' obj.id %}" class="btn btn-danger"
-          >Delete Tweet</a
-        >
+        <a href="#" class="btn btn-primary">Button</a>
       </div>
     </div>
     <br />
@@ -26,29 +27,29 @@
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
-        {% if myTweets.has_previous %}
+        {% if tweets.has_previous %}
         <li class="page-item">
-          <a class="page-link" href="?pg={{ myTweets.previous_page_number }}"
-            >{{ myTweets.previous_page_number }}</a
+          <a class="page-link" href="?pg={{ tweets.previous_page_number }}"
+            >{{ tweets.previous_page_number }}</a
           >
         </li>
         {% endif %}
         <li class="page-item">
-          <a class="page-link" href="?pg={{ myTweets.number }}"
-            >{{ myTweets.number }}</a
+          <a class="page-link" href="?pg={{ tweets.number }}"
+            >{{ tweets.number }}</a
           >
         </li>
-        {% if myTweets.has_next %}
+        {% if tweets.has_next %}
         <li class="page-item">
-          <a class="page-link" href="?pg={{ myTweets.next_page_number }}"
-            >{{ myTweets.next_page_number }}</a
+          <a class="page-link" href="?pg={{ tweets.next_page_number }}"
+            >{{ tweets.next_page_number }}</a
           >
         </li>
         {% endif %}
         <li class="page-item">
           <a
             class="page-link"
-            href="?pg={{ myTweets.paginator.num_pages}}"
+            href="?pg={{ tweets.paginator.num_pages}}"
             aria-label="Next"
           >
             <span aria-hidden="true">&raquo;</span>

@@ -19,7 +19,9 @@
       <div class="card-body">
         <h5 class="card-title">
           {{obj.manage.first_name}} {{obj.manage.last_name}}
-          <span class="fs-6 text-primary"> @{{obj.manage}} </span>
+          <a href="{% url 'userTweet' obj.manage.id %}">
+            <span class="fs-6 text-primary"> @{{obj.manage}} </span>
+          </a>
         </h5>
         <p class="card-text">{{obj.tweet}}</p>
         <a href="#" class="btn btn-primary">Button</a>
